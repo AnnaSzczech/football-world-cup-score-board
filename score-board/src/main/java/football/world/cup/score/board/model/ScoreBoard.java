@@ -7,11 +7,20 @@ public class ScoreBoard {
     private int awayTeamScore;
 
     public void setBoard(final String homeTeam, final String awayTeam) {
-        // do nothing
+        setHomeTeam(homeTeam);
+        setAwayTeam(awayTeam);
+        resetScore();
     }
 
     public void resetBoard() {
-        // do nothing
+        this.homeTeam = null;
+        this.awayTeam = null;
+        resetScore();
+    }
+
+    private void resetScore() {
+        this.homeTeamScore = 0;
+        this.awayTeamScore = 0;
     }
 
     public String getHomeTeam() {

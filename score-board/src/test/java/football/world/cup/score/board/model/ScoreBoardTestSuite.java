@@ -33,8 +33,10 @@ public class ScoreBoardTestSuite {
         scoreBoard.setBoard("Mexico", "Canada");
 
         //Then
-        Assert.assertNotNull(scoreBoard.getHomeTeam());
-        Assert.assertNotNull(scoreBoard.getAwayTeam());
+        Assert.assertEquals("Mexico", scoreBoard.getHomeTeam());
+        Assert.assertEquals("Canada", scoreBoard.getAwayTeam());
+        Assert.assertEquals(0, scoreBoard.getAwayTeamScore());
+        Assert.assertEquals(0, scoreBoard.getAwayTeamScore());
     }
 
     @Test
@@ -43,6 +45,7 @@ public class ScoreBoardTestSuite {
         final ScoreBoard scoreBoard = new ScoreBoard();
 
         //When
+        scoreBoard.setBoard("Mexico", "Canada");
         scoreBoard.resetBoard();
 
         //Then
