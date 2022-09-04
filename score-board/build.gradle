@@ -10,16 +10,6 @@ repositories {
 }
 
 dependencies {
-    testCompile('junit:junit:4.12')
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
-tasks.named('jar') {
-    manifest {
-        attributes('Implementation-Title': project.name,
-                'Implementation-Version': project.version)
-    }
+    implementation('org.slf4j:slf4j-api:2.0.0')
+    testImplementation('junit:junit:4.13.2')
 }
