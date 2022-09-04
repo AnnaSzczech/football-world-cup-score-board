@@ -1,17 +1,24 @@
 package football.world.cup.score.board.api;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
+
+    private boolean isGameContinues;
+    private static final Logger LOG = LoggerFactory.getLogger(FootballWorldCupScoreBoard.class);
+
     @Override
     public void startGame(String homeTeam, String awayTeam) {
-        // do nothing
+        this.isGameContinues = true;
     }
 
     @Override
     public void finishGame() {
-        // do nothing
+        this.isGameContinues = false;
     }
 
     @Override
@@ -25,6 +32,6 @@ public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
     }
 
     public boolean isGameContinues() {
-        return false;
+        return isGameContinues;
     }
 }
