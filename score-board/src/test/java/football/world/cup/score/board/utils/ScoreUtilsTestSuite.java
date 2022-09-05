@@ -1,5 +1,6 @@
 package football.world.cup.score.board.utils;
 
+import football.world.cup.score.board.TestSuiteBasic;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +9,7 @@ import org.junit.runners.Parameterized;
 import java.util.*;
 
 @RunWith(Parameterized.class)
-public class ScoreUtilsTestSuite {
+public class ScoreUtilsTestSuite extends TestSuiteBasic {
     private final String scoreText;
     private final String homeTeam;
     private final String awayTeam;
