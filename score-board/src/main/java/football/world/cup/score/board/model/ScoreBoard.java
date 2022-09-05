@@ -82,7 +82,7 @@ public class ScoreBoard extends ScoreBoardPrototype<ScoreBoard> {
 
     @Override
     public String toString() {
-        return homeTeam + ' ' + homeTeamScore + " - " + awayTeam + ' ' + awayTeamScore + "\\n";
+        return homeTeam + ' ' + homeTeamScore + " - " + awayTeam + ' ' + awayTeamScore + "\n";
     }
 
     @Override
@@ -92,13 +92,12 @@ public class ScoreBoard extends ScoreBoardPrototype<ScoreBoard> {
         ScoreBoard that = (ScoreBoard) o;
         return homeTeamScore == that.homeTeamScore &&
                 awayTeamScore == that.awayTeamScore &&
-                isGameContinues == that.isGameContinues &&
-                Objects.equals(homeTeam, that.homeTeam) &&
-                Objects.equals(awayTeam, that.awayTeam);
+                homeTeam.equals(that.homeTeam) &&
+                awayTeam.equals(that.awayTeam);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(homeTeam, homeTeamScore, awayTeam, awayTeamScore, isGameContinues);
+        return Objects.hash(homeTeam, homeTeamScore, awayTeam, awayTeamScore);
     }
 }
