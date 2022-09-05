@@ -17,9 +17,10 @@ public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
         final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(new GamesSummary(), scoreBoard);
 
         //When
-        footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
+        boolean result = footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
 
         //Then
+        Assert.assertTrue(result);
         Assert.assertTrue(scoreBoard.isGameContinues());
         Assert.assertEquals("Mexico", scoreBoard.getHomeTeam());
         Assert.assertEquals("Canada", scoreBoard.getAwayTeam());
@@ -35,9 +36,10 @@ public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
-        footballWorldCupScoreBoard.finishGame();
+        boolean result = footballWorldCupScoreBoard.finishGame();
 
         //Then
+        Assert.assertTrue(result);
         Assert.assertFalse(scoreBoard.isGameContinues());
         Assert.assertNull(scoreBoard.getHomeTeam());
         Assert.assertNull(scoreBoard.getAwayTeam());
@@ -51,9 +53,10 @@ public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
-        footballWorldCupScoreBoard.updateScore("Mexico - Canada: 2 - 5");
+        boolean result = footballWorldCupScoreBoard.updateScore("Mexico - Canada: 2 - 5");
 
         //Then
+        Assert.assertTrue(result);
         Assert.assertTrue(scoreBoard.isGameContinues());
         Assert.assertEquals(2, scoreBoard.getHomeTeamScore());
         Assert.assertEquals(5, scoreBoard.getAwayTeamScore());

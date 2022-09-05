@@ -86,10 +86,14 @@ public class ScoreBoard extends ScoreBoardPrototype<ScoreBoard> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ScoreBoard that = (ScoreBoard) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final ScoreBoard that = (ScoreBoard) o;
         return homeTeamScore == that.homeTeamScore &&
                 awayTeamScore == that.awayTeamScore &&
                 homeTeam.equals(that.homeTeam) &&
