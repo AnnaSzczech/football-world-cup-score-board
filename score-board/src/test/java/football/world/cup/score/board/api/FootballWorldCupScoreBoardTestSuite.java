@@ -48,10 +48,12 @@ public class FootballWorldCupScoreBoardTestSuite  extends TestSuiteBasic {
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
-        footballWorldCupScoreBoard.updateScore("Mexico - Canada: 0 - 5");
+        footballWorldCupScoreBoard.updateScore("Mexico - Canada: 2 - 5");
 
         //Then
         Assert.assertTrue(scoreBoard.isGameContinues());
+        Assert.assertEquals(2, scoreBoard.getHomeTeamScore());
+        Assert.assertEquals(5, scoreBoard.getAwayTeamScore());
     }
 
     @Test
