@@ -65,7 +65,7 @@ public class FootballWorldCupScoreBoardTestSuite {
         FootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
 
         //When
-        footballWorldCupScoreBoard.startGame("Mexico", "Canada");
+        footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
         footballWorldCupScoreBoard.updateScore("Mexico - Canada: 0 - 5");
 
         //Then
