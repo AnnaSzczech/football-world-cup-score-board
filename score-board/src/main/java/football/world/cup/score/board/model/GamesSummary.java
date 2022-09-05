@@ -6,11 +6,11 @@ import java.util.List;
 public class GamesSummary {
     private final List<ScoreBoard> scoreBoards = new LinkedList<>();
 
-    public boolean addScoreToSummary(final ScoreBoard scoreBoard) {
-        return scoreBoards.add(scoreBoard);
+    public boolean addScoreToSummary(final ScoreBoard scoreBoard) throws CloneNotSupportedException {
+        return scoreBoards.add(scoreBoard.shallowCopy());
     }
 
     public List<ScoreBoard> getScoreBoards() {
-        return scoreBoards;
+        return List.copyOf(scoreBoards);
     }
 }
