@@ -13,19 +13,16 @@ public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
 
     private static final Logger LOG = LoggerFactory.getLogger(FootballWorldCupScoreBoard.class);
 
-    private boolean isGameContinues;
     private final ScoreBoard scoreBoard;
 
     public FootballWorldCupScoreBoard(final ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
-        this.isGameContinues = false;
     }
 
     @Override
     public void startGame(final String homeTeam, final String awayTeam) {
-        if (!isGameContinues) {
+        if (!scoreBoard.isGameContinues()) {
             scoreBoard.setBoard(trim(homeTeam), trim(awayTeam));
-            this.isGameContinues = true;
         } else {
             LOG.error("Game has not been started!");
         }
@@ -33,9 +30,8 @@ public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
 
     @Override
     public void finishGame() {
-        if (isGameContinues) {
+        if (scoreBoard.isGameContinues()) {
             scoreBoard.resetBoard();
-            this.isGameContinues = false;
         } else {
             LOG.error("Game has not been finished!");
         }
@@ -51,7 +47,4 @@ public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
         return new ArrayList<>();
     }
 
-    public boolean isGameContinues() {
-        return isGameContinues;
-    }
 }

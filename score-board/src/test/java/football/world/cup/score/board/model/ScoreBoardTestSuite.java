@@ -1,28 +1,10 @@
 package football.world.cup.score.board.model;
 
-import org.junit.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import football.world.cup.score.board.TestSuiteBasic;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class ScoreBoardTestSuite {
-    private static final Logger LOG = LoggerFactory.getLogger(ScoreBoardTestSuite.class);
-    private static int testCounter = 0;
-
-    @BeforeClass
-    public static void beforeAllTests() {
-        LOG.debug("This is the beginning of tests.");
-    }
-
-    @AfterClass
-    public static void afterAllTests() {
-        LOG.debug("All tests are finished.");
-    }
-
-    @Before
-    public void beforeEveryTest() {
-        testCounter++;
-        LOG.debug("Preparing to execute test #" + testCounter);
-    }
+public class ScoreBoardTestSuite  extends TestSuiteBasic {
 
     @Test
     public void testSetBoard() {
