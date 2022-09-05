@@ -5,22 +5,28 @@ public class ScoreBoard {
     private int homeTeamScore;
     private String awayTeam;
     private int awayTeamScore;
+    private boolean isGameContinues;
 
     public void setBoard(final String homeTeam, final String awayTeam) {
         setHomeTeam(homeTeam);
         setAwayTeam(awayTeam);
         resetScore();
+        this.isGameContinues = true;
     }
 
     public void resetBoard() {
         this.homeTeam = null;
         this.awayTeam = null;
         resetScore();
+        this.isGameContinues = false;
     }
 
     private void resetScore() {
         this.homeTeamScore = 0;
         this.awayTeamScore = 0;
+    }
+    public boolean isGameContinues() {
+        return isGameContinues;
     }
 
     public String getHomeTeam() {
