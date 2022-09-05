@@ -40,7 +40,7 @@ public class ScoreUtilsTestSuite {
     }
 
     @Test
-    public void testResetBoard() {
+    public void testIsScoreInCorrectPattern() {
         //Given
 
         //When
