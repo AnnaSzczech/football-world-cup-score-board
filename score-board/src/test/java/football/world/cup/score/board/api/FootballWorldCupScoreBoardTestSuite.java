@@ -5,13 +5,15 @@ import football.world.cup.score.board.model.ScoreBoard;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class FootballWorldCupScoreBoardTestSuite  extends TestSuiteBasic {
+import java.util.List;
+
+public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
 
     @Test
     public void testStartGame() {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
-        IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
+        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
@@ -28,7 +30,7 @@ public class FootballWorldCupScoreBoardTestSuite  extends TestSuiteBasic {
     public void testFinishGame() {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
-        IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
+        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
@@ -44,26 +46,32 @@ public class FootballWorldCupScoreBoardTestSuite  extends TestSuiteBasic {
     public void testUpdateScore() {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
-        IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
+        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
-        footballWorldCupScoreBoard.updateScore("Mexico - Canada: 0 - 5");
+        footballWorldCupScoreBoard.updateScore("Mexico - Canada: 2 - 5");
 
         //Then
         Assert.assertTrue(scoreBoard.isGameContinues());
+        Assert.assertEquals(2, scoreBoard.getHomeTeamScore());
+        Assert.assertEquals(5, scoreBoard.getAwayTeamScore());
     }
 
     @Test
     public void testGetSummaryOfGamesByTotalScore() {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
-        IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
+        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
 
         //When
-        int summaryOfGamesScoreSize = footballWorldCupScoreBoard.getSummaryOfGamesByTotalScore().size();
+        footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
+        footballWorldCupScoreBoard.updateScore("Mexico - Canada: 1 - 0");
+        footballWorldCupScoreBoard.finishGame();
+        final List<ScoreBoard> summaryOfGames = footballWorldCupScoreBoard.getSummaryOfGamesByTotalScore();
 
         //Then
-//        Assert.assertEquals(1, summaryOfGamesScoreSize);
+        Assert.assertEquals(1, summaryOfGames.size());
+        Assert.assertEquals(createScoreBoardList("Mexico", 1, "Canada", 0), summaryOfGames);
     }
 }

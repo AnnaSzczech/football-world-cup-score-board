@@ -6,7 +6,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
+import static football.world.cup.score.board.utils.ScoreUtils.validateScore;
 import static org.apache.commons.lang3.StringUtils.trim;
 
 public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
@@ -38,12 +41,18 @@ public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
     }
 
     @Override
-    public void updateScore(final String score) {
-        // do nothing
+    public void updateScore(final String scoreText) {
+        final Optional<Map<String, Integer>> score = validateScore(scoreText, scoreBoard.getHomeTeam(), scoreBoard.getAwayTeam());
+        if (scoreBoard.isGameContinues() && score.isPresent()) {
+            scoreBoard.setHomeTeamScore(score.get().get(scoreBoard.getHomeTeam()));
+            scoreBoard.setAwayTeamScore(score.get().get(scoreBoard.getAwayTeam()));
+        } else {
+            LOG.error("Score has not been updated!");
+        }
     }
 
     @Override
-    public List<String> getSummaryOfGamesByTotalScore() {
+    public List<ScoreBoard> getSummaryOfGamesByTotalScore() {
         return new ArrayList<>();
     }
 
