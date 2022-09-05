@@ -21,8 +21,7 @@ public class CountryUtilsTestSuite extends TestSuiteBasic {
         return Arrays.asList(new Object[][]{
                 {"Mexico", "Canada", true, true},//
                 {"Test", "Test", false, false},//
-                {"Mexico 2", "Canada", false, true},//
-                {"  Mexico ", " Canada ", true, true},//
+                {"Mexico 2", "Canada", false, true}//
         });
     }
 

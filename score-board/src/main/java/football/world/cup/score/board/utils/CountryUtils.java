@@ -1,12 +1,22 @@
 package football.world.cup.score.board.utils;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
+import static java.util.stream.Collectors.toList;
+import static  org.apache.commons.lang3.StringUtils.isNotBlank;
+
 public class CountryUtils {
+    final private static List<String> countries = Arrays.stream(Locale.getISOCountries())//
+            .map(locale -> new Locale("", locale).getDisplayCountry(Locale.ENGLISH).toLowerCase())//
+            .collect(toList());
 
     public static boolean isCountryNameCorrect(String country) {
-        return false;
+        return isNotBlank(country) && countries.contains(country.toLowerCase());
     }
 
     public static boolean differentTeam(String homeTeam, String awayTeam) {
-        return false;
+        return !homeTeam.equalsIgnoreCase(awayTeam);
     }
 }
