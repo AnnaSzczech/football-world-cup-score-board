@@ -10,19 +10,23 @@ import java.util.*;
 @RunWith(Parameterized.class)
 public class ScoreUtilsTestSuite {
     private final String scoreText;
+    private final String homeTeam;
+    private final String awayTeam;
     private final boolean result;
     private final Map<String, Integer> score;
 
     @Parameterized.Parameters
     public static Collection<Object[]> parameters() {
         return Arrays.asList(new Object[][]{
-                {"Mexico - Canada: 0 - 5", true, createScoreMap(new String[]{"Mexico", "Canada"}, new Integer[]{0, 5})},//
-                {"0 - 5", false, Collections.EMPTY_MAP}//
+                {"Mexico - Canada: 0 - 5", "Mexico", "Canada", true, createScoreMap(new String[]{"Mexico", "Canada"}, new Integer[]{0, 5})},//
+                {"0 - 5", "", "", false, Collections.EMPTY_MAP}//
         });
     }
 
-    public ScoreUtilsTestSuite(final String scoreText, final boolean result, final Map<String, Integer> score) {
+    public ScoreUtilsTestSuite(final String scoreText, final String homeTeam, final String awayTeam, final boolean result, final Map<String, Integer> score) {
         this.scoreText = scoreText;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
         this.result = result;
         this.score = score;
     }
@@ -32,7 +36,7 @@ public class ScoreUtilsTestSuite {
         //Given
 
         //When
-        final Optional<Map<String, Integer>> score = ScoreUtils.validateScore(scoreText);
+        final Optional<Map<String, Integer>> score = ScoreUtils.validateScore(scoreText, homeTeam, awayTeam);
 
         //Then
         Assert.assertEquals(!this.score.isEmpty(), score.isPresent());
