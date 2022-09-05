@@ -35,7 +35,7 @@ public class ScoreUtilsTestSuite {
         final Optional<Map<String, Integer>> score = ScoreUtils.validateScore(scoreText);
 
         //Then
-        Assert.assertEquals(this.score.isEmpty(), score.isPresent());
+        Assert.assertEquals(!this.score.isEmpty(), score.isPresent());
         score.ifPresent(map -> Assert.assertEquals(this.score, map));
     }
 
