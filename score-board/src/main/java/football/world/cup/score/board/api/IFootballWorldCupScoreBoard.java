@@ -5,11 +5,11 @@ import football.world.cup.score.board.model.ScoreBoard;
 import java.util.List;
 
 public interface IFootballWorldCupScoreBoard {
-    void startGame(final String homeTeam, final String awayTeam);
+    boolean startGame(final String homeTeam, final String awayTeam);
 
-    void finishGame() throws CloneNotSupportedException;
+    boolean finishGame() throws CloneNotSupportedException;
 
-    void updateScore(final String score);
+    boolean updateScore(final String score);
 
     List<ScoreBoard> getSummaryOfGamesByTotalScore();
 }

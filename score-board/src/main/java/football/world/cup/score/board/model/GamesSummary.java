@@ -13,16 +13,20 @@ public class GamesSummary {
     }
 
     public List<ScoreBoard> getScoreBoards() {
-        List<ScoreBoard> scoreBoardsCopy = List.copyOf(scoreBoards);
+        final List<ScoreBoard> scoreBoardsCopy = List.copyOf(scoreBoards);
         Collections.reverse(scoreBoardsCopy);
         return scoreBoardsCopy;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GamesSummary that = (GamesSummary) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final GamesSummary that = (GamesSummary) o;
         return Objects.equals(scoreBoards, that.scoreBoards);
     }
 

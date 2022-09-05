@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static football.world.cup.score.board.utils.CountryUtils.differentTeam;
+import static football.world.cup.score.board.utils.CountryUtils.isCountryNameCorrect;
 import static football.world.cup.score.board.utils.ScoreUtils.validateScore;
 import static org.apache.commons.lang3.StringUtils.trim;
-import static football.world.cup.score.board.utils.CountryUtils.isCountryNameCorrect;
-import static football.world.cup.score.board.utils.CountryUtils.differentTeam;
 
 public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
 
@@ -27,32 +27,38 @@ public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
     }
 
     @Override
-    public void startGame(final String homeTeam, final String awayTeam) {
+    public boolean startGame(final String homeTeam, final String awayTeam) {
         if (!scoreBoard.isGameContinues() && validateCountry(homeTeam, awayTeam)) {
             scoreBoard.setBoard(trim(homeTeam), trim(awayTeam));
+            return true;
         } else {
             LOG.error("Game has not been started!");
+            return false;
         }
     }
 
     @Override
-    public void finishGame() throws CloneNotSupportedException {
+    public boolean finishGame() throws CloneNotSupportedException {
         if (scoreBoard.isGameContinues()) {
             gamesSummary.addScoreToSummary(scoreBoard);
             scoreBoard.resetBoard();
+            return true;
         } else {
             LOG.error("Game has not been finished!");
+            return false;
         }
     }
 
     @Override
-    public void updateScore(final String scoreText) {
+    public boolean updateScore(final String scoreText) {
         final Optional<Map<String, Integer>> score = validateScore(scoreText, scoreBoard.getHomeTeam(), scoreBoard.getAwayTeam());
         if (scoreBoard.isGameContinues() && score.isPresent()) {
             scoreBoard.setHomeTeamScore(score.get().get(scoreBoard.getHomeTeam()));
             scoreBoard.setAwayTeamScore(score.get().get(scoreBoard.getAwayTeam()));
+            return true;
         } else {
             LOG.error("Score has not been updated!");
+            return false;
         }
     }
 

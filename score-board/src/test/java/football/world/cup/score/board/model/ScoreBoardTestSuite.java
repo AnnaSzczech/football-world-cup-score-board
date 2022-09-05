@@ -4,7 +4,7 @@ import football.world.cup.score.board.TestSuiteBasic;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ScoreBoardTestSuite  extends TestSuiteBasic {
+public class ScoreBoardTestSuite extends TestSuiteBasic {
 
     @Test
     public void testSetBoard() {

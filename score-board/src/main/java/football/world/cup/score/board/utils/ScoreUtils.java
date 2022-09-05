@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.StringUtils.trim;
+
 public class ScoreUtils {
 
     private final static Logger LOG = LoggerFactory.getLogger(ScoreUtils.class);
