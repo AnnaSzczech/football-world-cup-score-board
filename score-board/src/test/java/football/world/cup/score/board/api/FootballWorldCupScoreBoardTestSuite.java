@@ -5,7 +5,6 @@ import football.world.cup.score.board.model.ScoreBoard;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
@@ -73,13 +72,6 @@ public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
 
         //Then
         Assert.assertEquals(1, summaryOfGames.size());
-        Assert.assertEquals(createScoreBoardList(), summaryOfGames);
-    }
-
-    private List<ScoreBoard> createScoreBoardList() {
-        final List<ScoreBoard> scoreBoards = new LinkedList<>();
-        final ScoreBoard scoreBoard = new ScoreBoard("Mexico", 1, "Canada", 0);
-        scoreBoards.add(scoreBoard);
-        return scoreBoards;
+        Assert.assertEquals(createScoreBoardList("Mexico", 1, "Canada", 0), summaryOfGames);
     }
 }
