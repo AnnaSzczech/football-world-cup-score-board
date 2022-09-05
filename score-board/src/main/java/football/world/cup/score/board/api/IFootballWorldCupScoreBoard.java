@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface IFootballWorldCupScoreBoard {
     void startGame(final String homeTeam, final String awayTeam);
-    void finishGame();
+
+    void finishGame() throws CloneNotSupportedException;
+
     void updateScore(final String score);
+
     List<ScoreBoard> getSummaryOfGamesByTotalScore();
 }

@@ -1,6 +1,7 @@
 package football.world.cup.score.board.api;
 
 import football.world.cup.score.board.TestSuiteBasic;
+import football.world.cup.score.board.model.GamesSummary;
 import football.world.cup.score.board.model.ScoreBoard;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +14,7 @@ public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
     public void testStartGame() {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
-        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
+        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(new GamesSummary(), scoreBoard);
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
@@ -27,10 +28,10 @@ public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
     }
 
     @Test
-    public void testFinishGame() {
+    public void testFinishGame() throws CloneNotSupportedException {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
-        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
+        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(new GamesSummary(), scoreBoard);
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
@@ -46,7 +47,7 @@ public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
     public void testUpdateScore() {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
-        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
+        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(new GamesSummary(), scoreBoard);
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
@@ -59,10 +60,10 @@ public class FootballWorldCupScoreBoardTestSuite extends TestSuiteBasic {
     }
 
     @Test
-    public void testGetSummaryOfGamesByTotalScore() {
+    public void testGetSummaryOfGamesByTotalScore() throws CloneNotSupportedException {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
-        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(scoreBoard);
+        final IFootballWorldCupScoreBoard footballWorldCupScoreBoard = new FootballWorldCupScoreBoard(new GamesSummary(), scoreBoard);
 
         //When
         footballWorldCupScoreBoard.startGame("Mexico ", " Canada ");
