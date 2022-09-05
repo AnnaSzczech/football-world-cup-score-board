@@ -40,7 +40,7 @@ public class ScoreBoardTestSuite {
     }
 
     @Test
-    public void testResetBoard() {
+    public void testIsScoreInCorrectPattern() {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
 
