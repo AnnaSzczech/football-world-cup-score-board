@@ -29,6 +29,10 @@ public class ScoreUtils {
     }
 
     private static Optional<Map<String, Integer>> createMapWithScore(final String[] scoreArray, final String... team) {
+        if (scoreArray.length != 4) {
+            LOG.error("Score have incorrect format!");
+            return Optional.empty();
+        }
         final Map<String, Integer> scoreMap = new HashMap<>();
         scoreMap.put(trim(scoreArray[0]), Integer.valueOf(trim(scoreArray[2])));
         scoreMap.put(trim(scoreArray[1]), Integer.valueOf(trim(scoreArray[3])));

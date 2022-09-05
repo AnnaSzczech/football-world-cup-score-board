@@ -17,6 +17,6 @@ public class CountryUtils {
     }
 
     public static boolean differentTeam(final String homeTeam, final String awayTeam) {
-        return !homeTeam.equalsIgnoreCase(awayTeam);
+        return isNotBlank(homeTeam) && isNotBlank(awayTeam) && !homeTeam.equalsIgnoreCase(awayTeam);
     }
 }

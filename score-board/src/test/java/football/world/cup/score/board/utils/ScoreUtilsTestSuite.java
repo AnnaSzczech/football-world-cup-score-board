@@ -20,6 +20,8 @@ public class ScoreUtilsTestSuite extends TestSuiteBasic {
     public static Collection<Object[]> parameters() {
         return Arrays.asList(new Object[][]{
                 {"Mexico - Canada: 0 - 5", "Mexico", "Canada", true, createScoreMap(new String[]{"Mexico", "Canada"}, new Integer[]{0, 5})},//
+                {"Argentina-Australia:4-1", "Argentina", "Australia", true, createScoreMap(new String[]{"Australia", "Argentina"}, new Integer[]{1, 4})},//
+                {"Argentina-Australia 4-1", "Mexico", "Australia", false, Collections.EMPTY_MAP},//
                 {"0 - 5", "", "", false, Collections.EMPTY_MAP}//
         });
     }
