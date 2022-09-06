@@ -1,5 +1,6 @@
 package football.world.cup.score.board.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,7 @@ public final class ScoreUtils {
     private final static String PATTERN = "([a-z ]*-[a-z ]*):([0-9 ]*-[0-9 ]*)";
 
     public static Optional<Map<String, Integer>> validateScore(final String score, final String homeTeam, final String awayTeam) {
-        if (!isScoreInCorrectPattern(score)) {
+        if (StringUtils.isBlank(score) || !isScoreInCorrectPattern(score)) {
             LOG.error("Score have incorrect format!");
             return Optional.empty();
         }
