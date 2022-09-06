@@ -8,12 +8,12 @@ import java.util.Objects;
 public final class GamesSummary {
     private final List<ScoreBoard> scoreBoards = new LinkedList<>();
 
-    public boolean addScoreToSummary(final ScoreBoard scoreBoard) throws CloneNotSupportedException {
+    public synchronized boolean addScoreToSummary(final ScoreBoard scoreBoard) throws CloneNotSupportedException {
         return scoreBoards.add(scoreBoard.shallowCopy());
     }
 
     public List<ScoreBoard> getScoreBoards() {
-        final List<ScoreBoard> scoreBoardsCopy = List.copyOf(scoreBoards);
+        final List<ScoreBoard> scoreBoardsCopy = new java.util.ArrayList<>(List.copyOf(scoreBoards));
         Collections.reverse(scoreBoardsCopy);
         return scoreBoardsCopy;
     }
