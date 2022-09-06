@@ -14,7 +14,7 @@ import static football.world.cup.score.board.utils.CountryUtils.isCountryNameCor
 import static football.world.cup.score.board.utils.ScoreUtils.validateScore;
 import static org.apache.commons.lang3.StringUtils.trim;
 
-public class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
+public final class FootballWorldCupScoreBoard implements IFootballWorldCupScoreBoard {
 
     private static final Logger LOG = LoggerFactory.getLogger(FootballWorldCupScoreBoard.class);
 

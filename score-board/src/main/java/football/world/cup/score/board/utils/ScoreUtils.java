@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.StringUtils.trim;
 
-public class ScoreUtils {
+public final class ScoreUtils {
 
     private final static Logger LOG = LoggerFactory.getLogger(ScoreUtils.class);
     private final static String PATTERN = "([a-z ]*-[a-z ]*):([0-9 ]*-[0-9 ]*)";
