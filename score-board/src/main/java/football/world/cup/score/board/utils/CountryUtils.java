@@ -7,7 +7,7 @@ import java.util.Locale;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-public class CountryUtils {
+public final class CountryUtils {
     final private static List<String> countries = Arrays.stream(Locale.getISOCountries())//
             .map(locale -> new Locale("", locale).getDisplayCountry(Locale.ENGLISH).toLowerCase())//
             .collect(toList());

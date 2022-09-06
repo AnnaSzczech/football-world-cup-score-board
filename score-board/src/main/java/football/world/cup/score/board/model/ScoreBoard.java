@@ -2,7 +2,7 @@ package football.world.cup.score.board.model;
 
 import java.util.Objects;
 
-public class ScoreBoard extends ScoreBoardPrototype<ScoreBoard> {
+public final class ScoreBoard extends ScoreBoardPrototype<ScoreBoard> {
     private String homeTeam;
     private int homeTeamScore;
     private String awayTeam;

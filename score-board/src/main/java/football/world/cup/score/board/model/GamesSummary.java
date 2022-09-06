@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class GamesSummary {
+public final class GamesSummary {
     private final List<ScoreBoard> scoreBoards = new LinkedList<>();
 
     public boolean addScoreToSummary(final ScoreBoard scoreBoard) throws CloneNotSupportedException {
