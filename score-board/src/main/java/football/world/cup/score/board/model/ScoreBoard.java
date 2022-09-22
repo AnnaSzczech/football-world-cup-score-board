@@ -1,107 +1,38 @@
 package football.world.cup.score.board.model;
 
-import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public final class ScoreBoard extends ScoreBoardPrototype<ScoreBoard> {
-    private String homeTeam;
-    private int homeTeamScore;
-    private String awayTeam;
-    private int awayTeamScore;
-    private boolean isGameContinues;
+public final class ScoreBoard {
 
-    public ScoreBoard(final String homeTeam, final int homeTeamScore, final String awayTeam, final int awayTeamScore) {
-        this.homeTeam = homeTeam;
-        this.homeTeamScore = homeTeamScore;
-        this.awayTeam = awayTeam;
-        this.awayTeamScore = awayTeamScore;
-        this.isGameContinues = false;
+    private static final Logger LOG = LoggerFactory.getLogger(ScoreBoard.class);
+    private Game currentGame;
+
+    public Game startCurrentGame(final String homeTeam, final String awayTeam) {
+        if (StringUtils.isBlank(homeTeam) || StringUtils.isBlank(awayTeam)) {
+            return null;
+        }
+        if (currentGame == null) {
+            LOG.info("New ScoreBoard created!");
+            currentGame = new Game(homeTeam, awayTeam);
+        }
+        return currentGame;
     }
 
-    public ScoreBoard() {
-        this.isGameContinues = false;
-    }
-
-    public void setBoard(final String homeTeam, final String awayTeam) {
-        setHomeTeam(homeTeam);
-        setAwayTeam(awayTeam);
-        resetScore();
-        this.isGameContinues = true;
+    public Game getCurrentGame() {
+        return currentGame;
     }
 
     public void resetBoard() {
-        this.homeTeam = null;
-        this.awayTeam = null;
-        resetScore();
-        this.isGameContinues = false;
+        LOG.info("Match removed from the scoreboard!");
+        currentGame = null;
     }
 
-    private void resetScore() {
-        this.homeTeamScore = 0;
-        this.awayTeamScore = 0;
-    }
-
-    public ScoreBoard shallowCopy() throws CloneNotSupportedException {
-        return (ScoreBoard) super.clone();
-    }
-
-    public boolean isGameContinues() {
-        return isGameContinues;
-    }
-
-    public String getHomeTeam() {
-        return homeTeam;
-    }
-
-    public int getHomeTeamScore() {
-        return homeTeamScore;
-    }
-
-    public void setHomeTeamScore(final int homeTeamScore) {
-        this.homeTeamScore = homeTeamScore;
-    }
-
-    public String getAwayTeam() {
-        return awayTeam;
-    }
-
-    public int getAwayTeamScore() {
-        return awayTeamScore;
-    }
-
-    public void setAwayTeamScore(final int awayTeamScore) {
-        this.awayTeamScore = awayTeamScore;
-    }
-
-    private void setHomeTeam(final String homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    private void setAwayTeam(final String awayTeam) {
-        this.awayTeam = awayTeam;
-    }
-
-    @Override
-    public String toString() {
-        return homeTeam + ' ' + homeTeamScore + " - " + awayTeam + ' ' + awayTeamScore + "\n";
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        final ScoreBoard that = (ScoreBoard) o;
-        return homeTeamScore == that.homeTeamScore &&
-                awayTeamScore == that.awayTeamScore &&
-                homeTeam.equals(that.homeTeam) &&
-                awayTeam.equals(that.awayTeam);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(homeTeam, homeTeamScore, awayTeam, awayTeamScore);
+    public boolean isBoardSet () {
+        return currentGame != null;
     }
 }
+
+
+
