@@ -1,15 +1,16 @@
 package football.world.cup.score.board.api;
 
-import football.world.cup.score.board.model.ScoreBoard;
+import football.world.cup.score.board.model.Game;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
 public interface IFootballWorldCupScoreBoard {
-    boolean startGame(final String homeTeam, final String awayTeam);
+    void startGame(final String homeTeam, final String awayTeam);
 
-    boolean finishGame() throws CloneNotSupportedException;
+    void finishGame() throws CloneNotSupportedException;
 
-    boolean updateScore(final String score);
+    void updateScore(final Pair<Integer, Integer> score);
 
-    List<ScoreBoard> getSummaryOfGamesByTotalScore();
+    List<Game> getSummaryOfGamesByTotalScore();
 }

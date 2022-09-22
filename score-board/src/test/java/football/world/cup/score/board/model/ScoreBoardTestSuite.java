@@ -3,35 +3,41 @@ package football.world.cup.score.board.model;
 import football.world.cup.score.board.TestSuiteBasic;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+@RunWith(Parameterized.class)
 public class ScoreBoardTestSuite extends TestSuiteBasic {
+    private final String homeTeam;
+    private final String awayTeam;
 
-    @Test
-    public void testSetBoard() {
-        //Given
-        final ScoreBoard scoreBoard = new ScoreBoard();
+    @Parameterized.Parameters
+    public static Collection<Object[]> parameters() {
+        return Arrays.asList(new Object[][]{
+                {"Mexico", "Canada"}
+        });
+    }
 
-        //When
-        scoreBoard.setBoard("Mexico", "Canada");
-
-        //Then
-        Assert.assertEquals("Mexico", scoreBoard.getHomeTeam());
-        Assert.assertEquals("Canada", scoreBoard.getAwayTeam());
-        Assert.assertEquals(0, scoreBoard.getAwayTeamScore());
-        Assert.assertEquals(0, scoreBoard.getAwayTeamScore());
+    public ScoreBoardTestSuite(final String homeTeam, final String awayTeam) {
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
     }
 
     @Test
-    public void testIsScoreInCorrectPattern() {
+    public void testStartCurrentGame() {
         //Given
         final ScoreBoard scoreBoard = new ScoreBoard();
 
         //When
-        scoreBoard.setBoard("Mexico", "Canada");
-        scoreBoard.resetBoard();
+        scoreBoard.startCurrentGame(homeTeam, awayTeam);
+        scoreBoard.startCurrentGame(awayTeam, homeTeam);
 
         //Then
-        Assert.assertNull(scoreBoard.getHomeTeam());
-        Assert.assertNull(scoreBoard.getAwayTeam());
+        Assert.assertEquals(scoreBoard.getCurrentGame(), scoreBoard.getCurrentGame());
+        Assert.assertEquals(homeTeam, scoreBoard.getCurrentGame().getHomeTeam().getCountry());
+        Assert.assertEquals(awayTeam, scoreBoard.getCurrentGame().getAwayTeam().getCountry());
     }
 }
